@@ -29,6 +29,12 @@ def convertStartAndEndPoints(line):
                     featureStart_gene = 3 * featureStart_gene
                     featureEnd_gene = 3 * featureEnd_gene
 
+                #do nothing to card, TMHMM, SignalP, VFDB, InterProScan
+                #not sure Lipop, PilerCR,
+                #handle cases where we need to subtract one from the genome based start position
+                if((filename[1].find("Doors.gff") != -1)):
+                    geneStart = geneStart - 1;
+
                 #Do we need to convert gene based coordinates into genome based coordinates
                 if(geneStart > featureEnd_gene):
                     featureStart_global = geneStart + featureStart_gene
